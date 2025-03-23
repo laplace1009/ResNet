@@ -1,75 +1,6 @@
 # ResNet (Residual Networks)
 
-[English](#english) | [한국어](#korean)
-
-<a name="english"></a>
-## English
-
-### Overview
-This repository contains a PyTorch implementation of ResNet (Residual Networks), a deep convolutional neural network architecture that addresses the degradation problem in deep networks. ResNet introduces skip connections (residual connections) that allow the network to learn residual functions with reference to the layer inputs, rather than learning unreferenced functions.
-
-### Supported Models
-- ResNet-18
-- ResNet-34
-- ResNet-50
-- ResNet-101
-- ResNet-152
-
-### Architecture
-ResNet consists of:
-- An initial 7×7 convolution with 64 filters, followed by batch normalization, ReLU, and max pooling
-- Four stages of residual blocks
-- Global average pooling and a fully-connected layer for classification
-
-ResNet uses two types of building blocks:
-1. **Basic Block**: Used in ResNet-18 and ResNet-34, contains two 3×3 convolutions
-2. **Bottleneck Block**: Used in ResNet-50, ResNet-101, and ResNet-152, contains 1×1, 3×3, and 1×1 convolutions
-
-### Usage
-
-```python
-from models.resnet import ResNetModel
-
-# Create a ResNet-50 model with 1000 classes
-resnet = ResNetModel(layers_count=50, num_classes=1000)
-model = resnet.get_model()
-
-# For other variants
-# ResNet-18: layers_count=18
-# ResNet-34: layers_count=34
-# ResNet-101: layers_count=101
-# ResNet-152: layers_count=152
-
-# Make predictions
-import torch
-dummy_input = torch.randn(1, 3, 224, 224)
-output = model(dummy_input)
-```
-
-### Testing
-You can easily test the ResNet implementation using the provided test script:
-
-```bash
-python test_resnet.py
-```
-
-This will create and test all ResNet variants (18, 34, 50, 101, 152) with random input tensors, displaying model information and output shapes.
-
-To test a specific ResNet variant:
-
-```python
-# Test specific model
-from test_resnet import test_resnet
-model = test_resnet(model_size=50)  # Test ResNet-50
-```
-
-### Requirements
-See `requirements.txt` for the list of dependencies.
-
-### References
-- He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep Residual Learning for Image Recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
-
----
+[한국어](#korean) | [English](#english)
 
 <a name="korean"></a>
 ## 한국어
@@ -136,4 +67,73 @@ model = test_resnet(model_size=50)  # ResNet-50 테스트
 의존성 목록은 `requirements.txt`를 참조하세요.
 
 ### 참고 문헌
-- He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep Residual Learning for Image Recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
+- He, K., Zhang, X., Ren, S., & Sun, J. (2016). [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385). In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
+
+---
+
+<a name="english"></a>
+## English
+
+### Overview
+This repository contains a PyTorch implementation of ResNet (Residual Networks), a deep convolutional neural network architecture that addresses the degradation problem in deep networks. ResNet introduces skip connections (residual connections) that allow the network to learn residual functions with reference to the layer inputs, rather than learning unreferenced functions.
+
+### Supported Models
+- ResNet-18
+- ResNet-34
+- ResNet-50
+- ResNet-101
+- ResNet-152
+
+### Architecture
+ResNet consists of:
+- An initial 7×7 convolution with 64 filters, followed by batch normalization, ReLU, and max pooling
+- Four stages of residual blocks
+- Global average pooling and a fully-connected layer for classification
+
+ResNet uses two types of building blocks:
+1. **Basic Block**: Used in ResNet-18 and ResNet-34, contains two 3×3 convolutions
+2. **Bottleneck Block**: Used in ResNet-50, ResNet-101, and ResNet-152, contains 1×1, 3×3, and 1×1 convolutions
+
+### Usage
+
+```python
+from models.resnet import ResNetModel
+
+# Create a ResNet-50 model with 1000 classes
+resnet = ResNetModel(layers_count=50, num_classes=1000)
+model = resnet.get_model()
+
+# For other variants
+# ResNet-18: layers_count=18
+# ResNet-34: layers_count=34
+# ResNet-101: layers_count=101
+# ResNet-152: layers_count=152
+
+# Make predictions
+import torch
+dummy_input = torch.randn(1, 3, 224, 224)
+output = model(dummy_input)
+```
+
+### Testing
+You can easily test the ResNet implementation using the provided test script:
+
+```bash
+python test_resnet.py
+```
+
+This will create and test all ResNet variants (18, 34, 50, 101, 152) with random input tensors, displaying model information and output shapes.
+
+To test a specific ResNet variant:
+
+```python
+# Test specific model
+from test_resnet import test_resnet
+model = test_resnet(model_size=50)  # Test ResNet-50
+```
+
+### Requirements
+See `requirements.txt` for the list of dependencies.
+
+### References
+- He, K., Zhang, X., Ren, S., & Sun, J. (2016). [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385). In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
